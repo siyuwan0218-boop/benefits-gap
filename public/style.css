@@ -1,0 +1,49 @@
+:root{--bg:#f7f7f5;--card:#ffffff;--ink:#1c1c1a;--muted:#5f5f5a;--line:#e3e3df;--accent:#0f6e56;--accent-ink:#ffffff;--warn:#9a4b00;--warn-bg:#fff4e6;--ok:#0f6e56;--ok-bg:#e8f4ef;--info-bg:#eef2f7;--tax:#7a2e2e;--tax-bg:#fbecec;--radius:12px;--mono:ui-monospace,SFMono-Regular,Menlo,monospace}
+@media (prefers-color-scheme:dark){:root{--bg:#141412;--card:#1e1e1b;--ink:#ecece8;--muted:#a7a79f;--line:#33332f;--accent:#4fbf9d;--accent-ink:#0b0b0a;--warn:#ffb866;--warn-bg:#2a1f10;--ok:#4fbf9d;--ok-bg:#12271f;--info-bg:#1b222b;--tax:#ff9d9d;--tax-bg:#2b1717}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+.wrap{max-width:780px;margin:0 auto;padding:16px 16px 64px}
+header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:8px 0 4px}
+h1{font-size:1.45rem;line-height:1.25;margin:0 0 6px}
+.sub{color:var(--muted);margin:0 0 12px;font-size:.95rem}
+.lang{flex:none;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 12px;font-size:.85rem;cursor:pointer}
+.lang:hover{border-color:var(--accent)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin:12px 0}
+.card h2{font-size:1.05rem;margin:0 0 10px}
+fieldset{border:0;padding:0;margin:0 0 6px}
+legend{font-weight:600;font-size:.95rem;margin-bottom:6px;color:var(--ink)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px}
+@media (max-width:560px){.grid{grid-template-columns:1fr}}
+label{display:block;font-size:.88rem;color:var(--muted)}
+label span.l{display:block;margin-bottom:3px}
+input[type=number],select{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit;font-size:1rem}
+input[type=number]:focus,select:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+.hint{font-size:.78rem;color:var(--muted);margin-top:2px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn{background:var(--accent);color:var(--accent-ink);border:0;border-radius:10px;padding:12px 18px;font:inherit;font-weight:600;font-size:1rem;cursor:pointer}
+.btn:hover{filter:brightness(1.05)}
+.btn.secondary{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:8px 0 4px}
+@media (max-width:560px){.tiles{grid-template-columns:1fr}}
+.tile{border-radius:10px;padding:12px;border:1px solid var(--line)}
+.tile .k{font-size:.78rem;color:var(--muted)}
+.tile .v{font-size:1.35rem;font-weight:700;font-variant-numeric:tabular-nums}
+.tile.money{background:var(--ok-bg)}.tile.room{background:var(--info-bg)}.tile.tax{background:var(--tax-bg)}
+.finding{border-left:4px solid var(--line);padding:10px 12px;margin:10px 0;background:var(--bg);border-radius:0 10px 10px 0}
+.finding.money{border-left-color:var(--ok)}.finding.room{border-left-color:#4a6fa5}.finding.tax{border-left-color:var(--tax)}.finding.info{border-left-color:var(--muted)}
+.finding h3{margin:0 0 4px;font-size:1rem}
+.finding .amt{font-weight:700;font-variant-numeric:tabular-nums}
+.finding p{margin:4px 0;font-size:.93rem}
+.finding .lbl{color:var(--muted);font-size:.8rem;text-transform:uppercase;letter-spacing:.03em;margin-right:6px}
+.finding .ask{background:var(--card);border:1px dashed var(--line);border-radius:8px;padding:8px 10px;font-size:.9rem;margin-top:6px}
+.srcs{font-size:.82rem;color:var(--muted);margin-top:6px}
+.srcs a{color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor;margin-right:10px}
+.note{font-size:.85rem;color:var(--muted)}
+.notice{background:var(--warn-bg);color:var(--warn);border-radius:10px;padding:10px 12px;font-size:.9rem;margin:10px 0}
+footer{color:var(--muted);font-size:.82rem;margin-top:28px;border-top:1px solid var(--line);padding-top:14px}
+footer p{margin:6px 0}
+details summary{cursor:pointer;color:var(--accent)}
+.hidden{display:none}
+code{font-family:var(--mono);font-size:.9em}
+.row.mt{margin-top:8px}

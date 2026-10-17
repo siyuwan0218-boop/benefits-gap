@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Benefits Gap Check</title>
+<meta name="description" content="Enter a few paycheck numbers. See which workplace benefits the rules say you may still be able to use this year: 401(k), employer match, mega backdoor Roth, ESPP, RSU withholding, HSA. Runs in your browser only.">
+<meta name="referrer" content="no-referrer">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f6e56'/%3E%3Cpath d='M9 17l5 5 9-11' fill='none' stroke='%23fff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div>
+    <h1 data-i18n="title">Benefits Gap Check</h1>
+    <p class="sub" data-i18n="subtitle"></p>
+  </div>
+  <button class="lang" id="langBtn" type="button" aria-label="Switch language">中文</button>
+</header>
+
+<div class="notice hidden" id="yearNotice"></div>
+
+<form class="card" id="f" autocomplete="off" novalidate>
+  <h2 data-i18n="h_inputs"></h2>
+  <p class="note" data-i18n="p_inputs"></p>
+
+  <fieldset>
+    <legend data-i18n="g_you"></legend>
+    <div class="grid">
+      <label><span class="l" data-i18n="l_salary"></span><input type="number" id="salary" min="0" step="1000" inputmode="numeric" placeholder="180000"></label>
+      <label><span class="l" data-i18n="l_pay"></span>
+        <select id="periods"><option value="26">26</option><option value="24">24</option><option value="12">12</option><option value="52">52</option></select></label>
+      <label><span class="l" data-i18n="l_filing"></span>
+        <select id="filing"><option value="single" data-i18n="o_single"></option><option value="mfj" data-i18n="o_mfj"></option></select></label>
+      <label><span class="l" data-i18n="l_age"></span>
+        <select id="age"><option value="u50" data-i18n="o_u50"></option><option value="50" data-i18n="o_50"></option><option value="55" data-i18n="o_55"></option><option value="60" data-i18n="o_60"></option><option value="64" data-i18n="o_64"></option></select></label>
+      <label><span class="l" data-i18n="l_state"></span>
+        <select id="state"><option value="other" data-i18n="o_other"></option><option value="CA" data-i18n="o_ca"></option></select></label>
+      <label><span class="l" data-i18n="l_prior"></span>
+        <select id="prior"><option value="unknown" data-i18n="o_unknown"></option><option value="yes" data-i18n="o_yes"></option><option value="no" data-i18n="o_no"></option></select></label>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend data-i18n="g_401k"></legend>
+    <div class="grid">
+      <label><span class="l" data-i18n="l_k_ytd"></span><input type="number" id="k_ytd" min="0" step="100" inputmode="numeric" placeholder="12000"></label>
+      <label><span class="l" data-i18n="l_k_pct"></span><input type="number" id="k_pct" min="0" max="100" step="0.5" inputmode="decimal" placeholder="10"><div class="hint" data-i18n="h_k_pct"></div></label>
+      <label><span class="l" data-i18n="l_m_rate"></span><input type="number" id="m_rate" min="0" max="200" step="5" inputmode="numeric" value="50"></label>
+      <label><span class="l" data-i18n="l_m_cap"></span><input type="number" id="m_cap" min="0" max="100" step="0.5" inputmode="decimal" value="6"></label>
+      <label><span class="l" data-i18n="l_trueup"></span>
+        <select id="trueup"><option value="unknown" data-i18n="o_unknown"></option><option value="yes" data-i18n="o_yes"></option><option value="no" data-i18n="o_no"></option></select></label>
+      <label><span class="l" data-i18n="l_aftertax"></span>
+        <select id="aftertax"><option value="unknown" data-i18n="o_unknown"></option><option value="yes" data-i18n="o_yes"></option><option value="no" data-i18n="o_no"></option></select></label>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend data-i18n="g_espp"></legend>
+    <div class="grid">
+      <label><span class="l" data-i18n="l_espp"></span>
+        <select id="espp"><option value="none" data-i18n="o_espp_none"></option><option value="no" data-i18n="o_espp_no"></option><option value="yes" data-i18n="o_espp_yes"></option></select></label>
+      <label><span class="l" data-i18n="l_espp_disc"></span><input type="number" id="espp_disc" min="0" max="15" step="1" inputmode="numeric" value="15"></label>
+      <label><span class="l" data-i18n="l_espp_cap"></span><input type="number" id="espp_cap" min="0" max="100" step="1" inputmode="numeric" value="10"></label>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend data-i18n="g_rsu"></legend>
+    <div class="grid">
+      <label><span class="l" data-i18n="l_rsu_ytd"></span><input type="number" id="rsu_ytd" min="0" step="1000" inputmode="numeric" placeholder="60000"></label>
+      <label><span class="l" data-i18n="l_rsu_more"></span><input type="number" id="rsu_more" min="0" step="1000" inputmode="numeric" placeholder="0"></label>
+      <label><span class="l" data-i18n="l_rsu_wh"></span><input type="number" id="rsu_wh" min="0" max="60" step="1" inputmode="numeric" value="22"></label>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend data-i18n="g_hsa"></legend>
+    <div class="grid">
+      <label><span class="l" data-i18n="l_hsa"></span>
+        <select id="hsa"><option value="none" data-i18n="o_hsa_none"></option><option value="self" data-i18n="o_hsa_self"></option><option value="family" data-i18n="o_hsa_family"></option></select></label>
+      <label><span class="l" data-i18n="l_hsa_ytd"></span><input type="number" id="hsa_ytd" min="0" step="100" inputmode="numeric" placeholder="2000"><div class="hint" data-i18n="h_hsa_ytd"></div></label>
+    </div>
+  </fieldset>
+
+  <div class="row mt">
+    <button class="btn" type="submit" data-i18n="b_calc"></button>
+    <button class="btn secondary" type="button" id="exampleBtn" data-i18n="b_example"></button>
+    <span class="note" data-i18n="p_local"></span>
+  </div>
+</form>
+
+<section class="card hidden" id="out" aria-live="polite">
+  <h2 data-i18n="h_results"></h2>
+  <p class="note" id="asof"></p>
+  <div class="tiles" id="tiles"></div>
+  <div id="findings"></div>
+  <p class="note" data-i18n="p_results_note"></p>
+</section>
+
+<footer>
+  <p data-i18n="f_notadvice"></p>
+  <p data-i18n="f_privacy"></p>
+  <p data-i18n="f_rules"></p>
+  <details><summary data-i18n="f_how"></summary><p data-i18n="f_how_body"></p></details>
+  <p><span data-i18n="f_feedback"></span> <a href="https://github.com/siyuwan0218-boop/benefits-gap/issues" target="_blank" rel="noopener noreferrer" data-i18n="f_issues"></a> · <a href="https://github.com/siyuwan0218-boop/benefits-gap" target="_blank" rel="noopener noreferrer" data-i18n="f_source"></a> · <a id="statsLink" href="/api/stats" rel="nofollow" data-i18n="f_stats"></a></p>
+</footer>
+</div>
+<script src="app.js" defer></script>
+</body>
+</html>
